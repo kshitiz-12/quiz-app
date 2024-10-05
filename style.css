@@ -1,0 +1,420 @@
+@import url('https://fonts.googleapis.com/css2?family=Edu+AU+VIC+WA+NT+Guides:wght@400..700&family=Teko:wght@300..700&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family:  'Teko', sans-serif;
+}
+
+body {
+    color: #fff;
+    background-color: #09001d;
+    overflow: hidden;
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width:100%;
+    padding: 20px 10%;
+    background:transparent;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 32px;
+    color: #fff;
+    text-decoration:none;
+    font-weight: 700;
+    filter: drop-shadow(0 0 5px #09001d);
+}
+
+.navbar a {
+    font-size: 18px;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 35px;
+    transition: .3s;
+}
+
+.navbar a:hover,
+.navbar a.active {
+    color: #c40094;
+}
+
+.main {
+    min-height: 100vh;
+    background: url('174068-abstract-pink-and-black-square-background-image.jpg');
+    background-size: cover;
+    background-position: center;
+    transition: .3s ease;
+}
+
+.main.active {
+    filter: blur(15px);
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+    width: 200%;
+}
+
+.home {
+    position: relative;
+    left: -50%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.home-content {
+    max-width: 600px;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.home-content h1 {
+    font-size: 78px;
+    font-weight: 700;
+    text-shadow: 0 0 10px rgba(0,0,0,.3);
+}
+
+.home-content p {
+    font-size: 16px;
+    text-align: center;
+    text-shadow: 0 0 10px rgba(0,0,0,.3);
+    margin-bottom: 30px;
+}
+
+.home-content .start-button {
+    height: 55px;
+    width: 190px;
+    background: #c40094;
+    border: 2px solid #fff;
+    outline: none;
+    border-radius: 6px;
+    box-shadow: 0 0 10px #c40094;
+    font-size: 18px;
+    color: #fff;
+    letter-spacing: 1px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.home-content .start-button:hover {
+    background: #09001d;
+    box-shadow: none;
+    transition: .5s;
+}
+
+.popup-info {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(.9);
+    width: 500px;
+    background: #fff;
+    border-radius: 6px;
+    padding: 10px 25px;
+    opacity: 0;
+    pointer-events: none;
+    transition: .3s ease;
+}
+
+.popup-info.active {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translate(-50%, -50%) scale(.9);
+}
+
+.popup-info h2 {
+    font-size: 50px;
+    color: #c40094;
+    text-align: center;
+}
+
+.popup-info .info {
+    display: block;
+    font-size: 16px;
+    color: #333;
+    font-weight: 500;
+    margin: 4px 0;
+    text-align: center;
+}
+
+.popup-info .button-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #999;
+    margin-top: 10px;
+    padding: 15px 0 7px;
+}
+
+.popup-info .button-group .info-button {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 130px;
+    height: 45px;
+    background: #c40094;
+    border: 2px solid #c40094;
+    outline: none;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 16px;
+    color: #fff;
+    font-weight: 600;
+    box-shadow: 0 0 10px rgba(0,0,0,.1);
+    cursor: pointer;
+    transition: .5s;
+}
+
+.popup-info .button-group .info-button:nth-child(1) {
+    background: transparent;
+    color: #c40094;
+}
+
+.popup-info .button-group .info-button:nth-child(1):hover {
+    background: #c40094;
+    color: #fff;
+}
+
+.popup-info .button-group .info-button:nth-child(2) {
+    background: transparent;
+    color: #c40094;
+}
+
+.popup-info .button-group .info-button:nth-child(2):hover {
+    background: #c40094;
+    color: #fff;
+}
+
+.quiz-section {
+    width: 100%;
+    background: #09001d;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    left: -50%;
+    transition: .8s ease-in-out;
+    transition-delay: .25s;
+    z-index: 100;
+}
+
+.quiz-section.active {
+    left: 0;
+}
+
+.quiz-section.quiz-box {
+    position: relative;
+    width: 500px;
+    background:transparent;
+    border: 2px solid #c40094;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 30px;
+}
+
+.quiz-box h1 {
+    font-size: 32px;
+    text-align: center;
+    background: linear-gradient(45deg,transparent,#c40094,transparent);
+    border-radius: 6px;
+}
+
+.quiz-box .quiz-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    border-bottom: 2px solid #c40094;
+}
+
+.quiz-box .quiz-header span {
+    font-size: 18px;
+    font-weight: 600;
+    color: #fff;
+}
+
+.quiz-box .header-score {
+    font-size: 16px;
+    font-weight: 500;
+    color: #c40094;
+}
+
+.quiz-box .question-text {
+    font-size: 24px;
+    font-weight: 600;
+    margin: 20px 0;
+    text-align: center;
+    color: #fff;
+}
+
+.option-list {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.option-list .option {
+    padding: 12px;
+    background-color: #fff;
+    color: #333;
+    border-radius: 6px;
+    margin: 10px 0;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.option-list .option:hover {
+    background-color: #c40094;
+    color: #fff;
+}
+
+.option-list .option span {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.quiz-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.quiz-footer .question-total {
+    font-size: 16px;
+    color: #fff;
+}
+
+.quiz-footer .next-button {
+    padding: 10px 20px;
+    background-color: #c40094;
+    color: #fff;
+    border: 2px solid #c40094;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.quiz-footer .next-button:hover {
+    background-color: #fff;
+    color: #c40094;
+    transition: 0.5s;
+}
+
+/* Media Queries for Responsiveness */
+@media screen and (max-width: 768px) {
+    .home-content h1 {
+        font-size: 48px;
+    }
+
+    .home-content p {
+        font-size: 14px;
+    }
+
+    .quiz-box {
+        width: 90%;
+    }
+
+    .popup-info {
+        width: 90%;
+    }
+}
+
+.category {
+    display: flexbox;
+    justify-content:space-between;
+    align-items: baseline;
+    margin: 20px 0;
+    color: #09001d;
+    padding: 10px;
+    border: 2px solid #c40094;
+    border-radius: 12px;
+    background: #fff;
+    font-size: 16px;
+    color: #09001d;
+    outline: none;
+    cursor: pointer;
+}
+#categories{
+    display: flex;
+    justify-content:space-between;
+    cursor: pointer;
+}
+#categories:hover{
+    background: #c40094;
+    color: #fff;
+}
+
+
+
+
+.category-select:focus {
+    border-color: #c40094;
+}
+/* Style for the option container */
+.option {
+    padding: 12px;
+    background-color: #fff; /* Default background color */
+    color: #333; /* Default text color */
+    border-radius: 6px;
+    margin: 10px 0;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+/* Hover effect for options */
+.option:hover {
+    background-color: #c40094; /* Change background on hover */
+    color: #fff; /* Change text color on hover */
+    transform: scale(1.02); /* Slightly enlarge the option on hover */
+}
+
+/* Style for the selected option */
+.option.selected {
+    background-color: #c40094; /* Selected background color */
+    color: white; /* Selected text color */
+    border: 2px solid #fff; /* Border for selected option */
+    transform: scale(1.02); /* Slightly enlarge the selected option */
+}
+
+.option.selected {
+    background-color: lightblue; /* Change to a distinct color for the selected option */
+    color: #333; /* Text color for selected option */
+}
+/* Add this CSS to your stylesheet */
+
+.restart-button {
+    padding: 10px 20px;
+    background-color: #4CAF50; /* Green background */
+    color: white; /* White text */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Add smooth transitions */
+}
+
+.restart-button:hover {
+    background-color: #45a049; /* Darker green on hover */
+    transform: scale(1.05); /* Slightly enlarge button */
+}
+
+.restart-button:active {
+    transform: scale(0.95); /* Shrink button on click */
+}

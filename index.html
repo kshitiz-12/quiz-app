@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Website</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="main">
+        <header class="header">
+            <a href="#" class="logo">Quiz.</a>
+
+            <nav class="navbar">
+                <a href="#" class="active">Home</a>
+                <a href="#">About</a>
+                <a href="#">Services</a>
+                <a href="#">Contact</a>
+            </nav>
+        </header>
+       
+        <div class="container">
+            <section class="quiz-section">
+                <div class="quiz-box">
+                    <h1>Quiz</h1>
+                    <div class="quiz-header">
+                        <span>All the best!!</span>
+                        <span class="header-score"></span>  
+                    </div>
+                    <h2 class="question-text">Loading question...</h2>
+
+                    <div class="option-list">
+                        <!-- Options will be dynamically generated here -->
+                    </div>
+
+                    <div class="quiz-footer">
+                        <span class="question-total"> 0 Of 5 Questions</span>
+                        <button class="next-button" disabled>Next</button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="home">
+                <div class="home-content">
+                    <h1>Quiz Website</h1>
+                    <p>Test your knowledge in various categories by selecting one below and starting the quiz!</p>
+                    <button class="start-button">Start Quiz</button>
+                </div>
+            </section>
+         </div>
+    </main>
+
+    <div class="popup-info">
+        <h2>Quiz Guide</h2>
+        <span class="info">1. Read each question carefully </span>
+        <span class="info">2. Manage your time wisely </span>
+        <span class="info">3. Review your answers before submitting </span>
+        <span class="info">4. Choose a category to continue </span>
+        <span class="info">5. Stay calm and focused, and don’t stress </span>
+
+        <div class="button-group">
+            <button class="info-button exit">Exit Quiz</button>
+            <a href="#" class="info-button cont">Continue</a>
+        </div>
+
+        <div class="category">
+            <label for="category-sub">Choose a category</label>
+            <select name="category-1" id="categories">
+                <!-- Open Trivia Database API category IDs -->
+                <option value="9">General Knowledge</option>
+                <option value="18">Science: Computers</option>
+                <option value="19">Science: Mathematics</option>
+                <option value="17">Science & Nature</option>
+                <option value="23">History</option>
+                <option value="22">Geography</option>
+                <option value="21">Sports</option>
+                <option value="11">Entertainment: Film</option>
+                <option value="12">Entertainment: Music</option>
+            </select>
+        </div>
+    </div>
+    
+</body>
+<script src="script.js"></script>
+</html>
