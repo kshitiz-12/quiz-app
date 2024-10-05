@@ -9,24 +9,29 @@ const questionText = document.querySelector('.question-text');
 const optionList = document.querySelector('.option-list');
 const questionTotal = document.querySelector('.question-total');
 const nextButton = document.querySelector('.next-button');
+
 let currentQuestionIndex = 0;
 let score = 0;
 let questions = [];
 let selectedCategory = 9; 
 let userAnswer = ''; 
+
 startButton.onclick = () => {
     popupInfo.classList.add("active");
 };
+
 exitButton.onclick = () => {
     popupInfo.classList.remove("active");
 };
+
 continueButton.onclick = () => {
     selectedCategory = categorySelect.value; 
     fetchQuestions(selectedCategory);
     popupInfo.classList.remove("active");
     quizSection.classList.add("active");
 };
-// questions from api......
+
+// questions from api
 async function fetchQuestions(categoryId) {
     const apiUrl = `https://opentdb.com/api.php?amount=5&category=${categoryId}&type=multiple`;
     try {
@@ -43,7 +48,7 @@ async function fetchQuestions(categoryId) {
     }
 }
 
-// Displayyy current question and its options
+// Display current question and its options
 function displayQuestion() {
     if (currentQuestionIndex < questions.length) {
         const currentQuestion = questions[currentQuestionIndex];
@@ -66,7 +71,8 @@ function displayQuestion() {
         showScore();
     }
 }
-// selection of an option....
+
+// Selection of an option
 function handleOptionClick(selectedOption, correctAnswer, optionElement) {
     const options = document.querySelectorAll('.option');
     options.forEach(option => {
@@ -74,40 +80,45 @@ function handleOptionClick(selectedOption, correctAnswer, optionElement) {
     });
     optionElement.classList.add('selected');
     userAnswer = selectedOption;
+
     if (userAnswer === correctAnswer) {
         score++;
-        optionElement.style.backgroundColor = 'green'; // Highlight correct anss
+        optionElement.style.backgroundColor = 'green'; // Highlight correct answer
     } else {
-        optionElement.style.backgroundColor = 'red'; // Highlight wrong ans
+        optionElement.style.backgroundColor = 'red'; // Highlight wrong answer
         // Show the correct answer
         options.forEach(option => {
             if (option.innerText === correctAnswer) {
-                option.style.backgroundColor = 'green'; // Highlight correct ansss
+                option.style.backgroundColor = 'green'; // Highlight correct answer
             }
         });
     }
 
-    nextButton.disabled = false; // Enable next button after selecting ans
+    nextButton.disabled = false; // Enable next button after selecting answer
 }
+
 nextButton.onclick = () => {
     currentQuestionIndex++;
     userAnswer = ''; // Reset 
     displayQuestion();
 };
-// final score
+
+// Final score
 function showScore() {
     questionText.innerHTML = `Quiz Complete! Your score is ${score} out of ${questions.length}.`;
-    optionList.innerHTML = ''; // options areee cleared
-    nextButton.style.display = 'none'; // to hide the next button in the finaaaal pageee!!!
-//   restart button 
+    optionList.innerHTML = ''; // Clear options
+    nextButton.style.display = 'none'; // Hide the next button on final page
+
+    // Restart button 
     const restartButton = document.createElement('button');
     restartButton.innerText = "Restart Quiz";
     restartButton.classList.add('restart-button'); 
     restartButton.onclick = () => {
         currentQuestionIndex = 0;
         score = 0;
-        fetchQuestions(selectedCategory); // Restart the quiz
-        restartButton.remove(); // Remove the restart button after the quiz restarts 
+        popupInfo.classList.add("active"); // Show the popup info (home page)
+        quizSection.classList.remove("active"); // Hide the quiz section
+        restartButton.remove(); // Remove the restart button after returning to the first page
     };
     optionList.appendChild(restartButton); 
 }
