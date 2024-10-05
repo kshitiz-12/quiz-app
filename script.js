@@ -9,32 +9,24 @@ const questionText = document.querySelector('.question-text');
 const optionList = document.querySelector('.option-list');
 const questionTotal = document.querySelector('.question-total');
 const nextButton = document.querySelector('.next-button');
-
 let currentQuestionIndex = 0;
 let score = 0;
 let questions = [];
-let selectedCategory = 9; // default category ID for General Knowledge
-let userAnswer = ''; // store the selected answer
-
-// Show the popup when the Start Quiz button is clicked
+let selectedCategory = 9; 
+let userAnswer = ''; 
 startButton.onclick = () => {
     popupInfo.classList.add("active");
 };
-
-// Hide the popup when Exit button is clicked
 exitButton.onclick = () => {
     popupInfo.classList.remove("active");
 };
-
-// Start the quiz when Continue button is clicked
 continueButton.onclick = () => {
-    selectedCategory = categorySelect.value; // Get the selected category ID
+    selectedCategory = categorySelect.value; 
     fetchQuestions(selectedCategory);
     popupInfo.classList.remove("active");
     quizSection.classList.add("active");
 };
-
-// Fetch questions from the API based on the selected category
+// questions from api......
 async function fetchQuestions(categoryId) {
     const apiUrl = `https://opentdb.com/api.php?amount=5&category=${categoryId}&type=multiple`;
     try {
@@ -42,8 +34,8 @@ async function fetchQuestions(categoryId) {
         const data = await response.json();
         questions = data.results;
         currentQuestionIndex = 0;
-        score = 0; // Reset score
-        userAnswer = ''; // Reset user answer
+        score = 0; 
+        userAnswer = ''; 
         displayQuestion();
     } catch (error) {
         console.error('Error fetching questions:', error);
@@ -51,17 +43,14 @@ async function fetchQuestions(categoryId) {
     }
 }
 
-// Display the current question and its options
+// Displayyy current question and its options
 function displayQuestion() {
     if (currentQuestionIndex < questions.length) {
         const currentQuestion = questions[currentQuestionIndex];
         questionText.innerHTML = currentQuestion.question;
-
-        optionList.innerHTML = ''; // Clear previous options
+        optionList.innerHTML = ''; 
         const options = [...currentQuestion.incorrect_answers, currentQuestion.correct_answer];
-        shuffleArray(options); // Shuffle options to randomize order
-
-        // Create option buttons dynamically
+        shuffleArray(options);
         options.forEach(option => {
             const optionElement = document.createElement('div');
             optionElement.classList.add('option');
@@ -71,69 +60,56 @@ function displayQuestion() {
         });
 
         questionTotal.innerHTML = `${currentQuestionIndex + 1} of ${questions.length} Questions`;
-        nextButton.disabled = true; // Disable Next button until an answer is selected
-        nextButton.style.display = 'inline-block'; // Ensure Next button is visible during the quiz
+        nextButton.disabled = true; 
+        nextButton.style.display = 'inline-block'; 
     } else {
         showScore();
     }
 }
-
-// Handle the selection of an option
+// selection of an option....
 function handleOptionClick(selectedOption, correctAnswer, optionElement) {
     const options = document.querySelectorAll('.option');
-
-    // Remove "selected" class from all options
     options.forEach(option => {
         option.classList.remove('selected');
     });
-
-    // Add "selected" class to the clicked option
     optionElement.classList.add('selected');
-
-    // Store the selected answer
     userAnswer = selectedOption;
-
-    // Check if the selected answer is correct
     if (userAnswer === correctAnswer) {
         score++;
-        optionElement.style.backgroundColor = 'green'; // Highlight correct answer
+        optionElement.style.backgroundColor = 'green'; // Highlight correct anss
     } else {
-        optionElement.style.backgroundColor = 'red'; // Highlight wrong answer
+        optionElement.style.backgroundColor = 'red'; // Highlight wrong ans
         // Show the correct answer
         options.forEach(option => {
             if (option.innerText === correctAnswer) {
-                option.style.backgroundColor = 'green'; // Highlight correct answer
+                option.style.backgroundColor = 'green'; // Highlight correct ansss
             }
         });
     }
 
-    nextButton.disabled = false; // Enable the Next button after an answer is selected
+    nextButton.disabled = false; // Enable next button after selecting ans
 }
-
-// Proceed to the next question
 nextButton.onclick = () => {
     currentQuestionIndex++;
-    userAnswer = ''; // Reset selected answer for the next question
+    userAnswer = ''; // Reset 
     displayQuestion();
 };
-
-// Show the final score after all questions are answered
+// final score
 function showScore() {
     questionText.innerHTML = `Quiz Complete! Your score is ${score} out of ${questions.length}.`;
-    optionList.innerHTML = ''; // Clear options
-    nextButton.style.display = 'none'; // Hide the Next button on the final score page
-
-    // Create and append the restart button
+    optionList.innerHTML = ''; // options areee cleared
+    nextButton.style.display = 'none'; // to hide the next button in the finaaaal pageee!!!
+//   restart button 
     const restartButton = document.createElement('button');
     restartButton.innerText = "Restart Quiz";
-    restartButton.classList.add('restart-button'); // Add the class for styling (ensure CSS for restart-button is added)
+    restartButton.classList.add('restart-button'); 
     restartButton.onclick = () => {
         currentQuestionIndex = 0;
         score = 0;
         fetchQuestions(selectedCategory); // Restart the quiz
-        restartButton.remove(); // Remove the restart button after the quiz restarts
+        restartButton.remove(); // Remove the restart button after the quiz restarts 
     };
-    optionList.appendChild(restartButton); // Append restart button to the options area
+    optionList.appendChild(restartButton); 
 }
 
 // Utility function to shuffle the options array
